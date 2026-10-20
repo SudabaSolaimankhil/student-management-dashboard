@@ -23,7 +23,7 @@ A responsive student management dashboard built with **React, Vite, and CSS Modu
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/student-management-dashboard.git
+git clone https://github.com/sudabasolaimankhil/student-management-dashboard.git
 cd student-management-dashboard
 ```
 
