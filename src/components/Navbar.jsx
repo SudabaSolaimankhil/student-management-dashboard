@@ -56,9 +56,9 @@ export default function Navbar({
         </button>
 
         <div className={styles.profile}>
-          <div className={styles.avatar}>SA</div>
+          <div className={styles.avatar}>SS</div>
           <div className={styles.profileInfo}>
-            <strong>Sarah Ahmed</strong>
+            <strong>Sudaba Solaiman Khil</strong>
             <span>Administrator</span>
           </div>
           <span className={styles.chevron}>⌄</span>
