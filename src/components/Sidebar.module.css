@@ -1,0 +1,138 @@
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  padding: 28px 18px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px;
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.logoIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  color: white;
+  background: var(--primary);
+  font-size: 22px;
+}
+
+.menuTitle {
+  margin: 45px 10px 14px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 14px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.navLink:hover {
+  background: var(--hover);
+  color: var(--primary);
+  transform: translateX(3px);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.active {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.navIcon {
+  width: 22px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.sidebarFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding: 14px 8px;
+  color: var(--text);
+}
+
+.helpIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.sidebarFooter strong {
+  font-size: 12px;
+}
+
+.sidebarFooter p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    width: 250px;
+    min-height: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .open {
+    transform: translateX(0);
+  }
+}
