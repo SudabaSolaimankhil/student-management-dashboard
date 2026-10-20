@@ -3,6 +3,11 @@ import styles from "./StudentTable.module.css";
 
 export default function StudentTable({ students }) {
   const [openMenu, setOpenMenu] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
+  function closeModal() {
+    setSelectedStudent(null);
+  }
 
   return (
     <section className={styles.tableCard}>
@@ -80,9 +85,7 @@ export default function StudentTable({ students }) {
                       <div className={styles.dropdown}>
                         <button
                           onClick={() => {
-                            alert(
-                              `Student: ${student.name}\nEmail: ${student.email}\nCourse: ${student.course}\nStatus: ${student.status}`,
-                            );
+                            setSelectedStudent(student);
                             setOpenMenu(null);
                           }}
                         >
@@ -121,6 +124,101 @@ export default function StudentTable({ students }) {
         Showing {students.length} students
         <span>Updated just now</span>
       </div>
+
+      {/* Student Details Modal */}
+      {selectedStudent && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div
+            className={styles.modal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="student-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <div>
+                <span className={styles.modalEyebrow}>STUDENT PROFILE</span>
+                <h2 id="student-modal-title">Student Details</h2>
+              </div>
+
+              <button
+                className={styles.closeButton}
+                onClick={closeModal}
+                aria-label="Close student details"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className={styles.modalProfile}>
+              <div className={styles.modalAvatar}>
+                {selectedStudent.name
+                  .split(" ")
+                  .map((part) => part[0])
+                  .slice(0, 2)
+                  .join("")
+                  .toUpperCase()}
+              </div>
+
+              <h3>{selectedStudent.name}</h3>
+              <p>{selectedStudent.email}</p>
+
+              <span
+                className={`${styles.status} ${
+                  styles[selectedStudent.status.toLowerCase()]
+                }`}
+              >
+                <span className={styles.statusDot} />
+                {selectedStudent.status} Student
+              </span>
+            </div>
+
+            <div className={styles.modalDetails}>
+              <div className={styles.detailItem}>
+                <span className={styles.detailIcon}>✉</span>
+                <div>
+                  <span className={styles.detailLabel}>Email Address</span>
+                  <strong>{selectedStudent.email}</strong>
+                </div>
+              </div>
+
+              <div className={styles.detailItem}>
+                <span className={styles.detailIcon}>▤</span>
+                <div>
+                  <span className={styles.detailLabel}>Enrolled Course</span>
+                  <strong>{selectedStudent.course}</strong>
+                </div>
+              </div>
+
+              <div className={styles.detailItem}>
+                <span className={styles.detailIcon}>▦</span>
+                <div>
+                  <span className={styles.detailLabel}>Enrollment Date</span>
+                  <strong>{selectedStudent.enrolled}</strong>
+                </div>
+              </div>
+
+              <div className={styles.detailItem}>
+                <span className={styles.detailIcon}>#</span>
+                <div>
+                  <span className={styles.detailLabel}>Student ID</span>
+                  <strong>
+                    STU-{String(selectedStudent.id).padStart(4, "0")}
+                  </strong>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <span>StudentHub Profile</span>
+
+              <button className={styles.modalCloseButton} onClick={closeModal}>
+                Close Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
